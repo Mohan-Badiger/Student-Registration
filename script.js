@@ -1,33 +1,21 @@
-const students = [];
+function showResults() {
+    const name = document.getElementById('studentName').value;
+    const course = document.getElementById('course').value;
+    const email = document.getElementById('email').value;
 
-function registerStudent() {
-    const student = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        dob: document.getElementById('dob').value,
-        address: document.getElementById('address').value,
-        city: document.getElementById('city').value,
-        state: document.getElementById('state').value,
-        zip: document.getElementById('zip').value,
-        country: document.getElementById('country').value
-    };
+    const marks1 = parseFloat(document.getElementById('subject1').value) || 0;
+    const marks2 = parseFloat(document.getElementById('subject2').value) || 0;
+    const marks3 = parseFloat(document.getElementById('subject3').value) || 0;
+    const marks4 = parseFloat(document.getElementById('subject4').value) || 0;
+    const marks5 = parseFloat(document.getElementById('subject5').value) || 0;
 
-    students.push(student);
-    alert('Student Registered Successfully!');
-    document.getElementById('registrationForm').reset();
-}
+    const totalMarks = marks1 + marks2 + marks3 + marks4 + marks5;
+    const percentage = (totalMarks / 500) * 100;
 
-function showStudentInfo() {
-    const studentList = document.getElementById('studentList');
-    studentList.innerHTML = '';
+    document.getElementById('resultName').textContent = `Name: ${name}`;
+    document.getElementById('resultCourse').textContent = `Course: ${course}`;
+    document.getElementById('resultEmail').textContent = `Email: ${email}`;
+    document.getElementById('resultPercentage').textContent = `Percentage: ${percentage.toFixed(2)}%`;
 
-    students.forEach((student, index) => {
-        const li = document.createElement('li');
-        li.textContent = `Student ${index + 1}: ${student.firstName} ${student.lastName}, ${student.email}, ${student.phone}, ${student.dob}, ${student.address}, ${student.city}, ${student.state}, ${student.zip}, ${student.country}`;
-        studentList.appendChild(li);
-    });
-
-    document.getElementById('studentInfo').classList.remove('hidden');
+    document.getElementById('results').style.display = 'block';
 }
